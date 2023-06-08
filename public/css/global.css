@@ -1,0 +1,75 @@
+/* Import this font from Google's web fonts library. */
+@import "https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap";
+
+:root {
+  box-sizing: border-box;
+}
+
+* {
+  box-sizing: inherit;
+  color: #8C1515;
+}
+
+input {
+  color: #8C1515;
+}
+
+body {
+  margin: 0;
+  font-family: "Open Sans", sans-serif;
+  background-color: #8C1515;
+}
+
+h1 {
+  font-size: large;
+}
+
+h2 {
+  font-size: medium;
+}
+
+label {
+  font-weight: bold;
+}
+
+button {
+  background-color: #097969;
+  border: 1px solid white;
+  border-radius: 0.75rem;
+  color: white;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 0.25rem 1.5rem;
+}
+
+button:hover {
+  background-color: #023020;
+}
+
+button.secondary {
+  background-color: white;
+  color: #097969;
+}
+
+button.secondary:hover {
+  background-color: #f1f1f1;
+}
+
+input, textarea {
+  background-color: #e6ecf0;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  min-width: 0;
+  padding: 0.5rem;
+}
+
+textarea {
+  font-family: inherit;
+}
+
+input:focus, textarea:focus {
+  background-color: white;
+  border: 1px solid #ccd6dd;
+}

@@ -1,0 +1,35 @@
+CS193X Final Project Milestone
+==============================
+
+Project Title: Bucket List Buddies
+Your Name: Tracy Wei
+Your SUNetID: tracywei
+
+Overview
+--------
+I have started working on the front-end of the application, focusing on building the user interface using HTML and CSS. I have explored various design options and incorporated some code from Assignment 3.1 as a foundation for the frontend.
+
+Project Changes
+---------------
+For now, I don't think I'll be making any significant changes from the project proposal.
+
+Implementation Details
+----------------------
+For the front-end, I am using HTML and CSS to create a user interface similar to the one in Assignment 3.1. The app will contain a homepage with a login prompt, a profile side bar where the user can select a goal, and the main page with the recommended matches. The frontend will contain a User class and App class.
+For the back-end, I plan to store the data in MongoDB as a collection called Users and have API endpoints for:
+- GET list of users
+- GET user information (id, name, email, phone number, goal) from id
+- POST for creating a new user
+- PATCH for updating bucket list goal
+
+External libraries and code
+---------------------------
+I am using some of the HTML and CSS from Assignment 3.1 as a starting foundation for my project's frontend since I an also building a "social media" type of app that has a similar UI.
+
+Collaboration and resources
+---------------------------
+Like I stated before, I plan to consult Assignment 3.1 for the frontend. Additionally, I may refer to online resources and documentation for specific HTML and CSS elements, like checkboxes.
+
+Anything else?
+--------------
+n/a
