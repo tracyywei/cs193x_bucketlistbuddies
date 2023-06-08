@@ -1,6 +1,7 @@
 import bodyParser from "body-parser";
 import cors from "cors";
 import express from "express";
+import { MongoClient } from "mongodb";
 
 let api = express.Router();
 let Users;
@@ -10,10 +11,10 @@ const initApi = async (app) => {
   app.set("json spaces", 2);
   app.use("/api", api);
 
-  // let conn = await MongoClient.connect("mongodb://127.0.0.1");
-  // let db = conn.db("cs193xproject_buddies");
-  // Users = db.collection("users");
-  // Posts = db.collection("posts");
+  let conn = await MongoClient.connect("mongodb://127.0.0.1");
+  let db = conn.db("cs193xproject_buddies");
+  Users = db.collection("users");
+  Posts = db.collection("posts");
 };
 
 api.use(bodyParser.json());
@@ -44,6 +45,26 @@ api.use("/users/:id", async (req, res, next) => {
   }
   res.locals.user = user;
   next();
+});
+
+// POST /users
+api.post("/users", async (req, res) => {
+  let id = req.body.id;
+  // 400 if the request body is missing an id property, or the id is empty
+  if (!id) {
+    res.status(400).json({ error: "Missing id" });
+    return;
+  }
+  // 400 if the user already exists
+  let repeatedUser = await Users.findOne({ id: id });
+  if (repeatedUser) {
+    res.status(400).json({ error: `${id} already exists` });
+    return;
+  }
+  let newUser = { "id": id, "name": id, "avatarURL": "images/default.png", "following": [] };
+  await Users.insertOne(newUser);
+  delete newUser._id;
+  res.json(newUser);
 });
 
 
