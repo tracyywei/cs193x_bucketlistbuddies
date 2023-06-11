@@ -1,5 +1,5 @@
 @import "./global.css";
-@import "./activitieslist.css";
+@import "./bucketlist.css";
 
 /***** Generic Containers ******/
 
@@ -204,7 +204,22 @@
   gap: 1rem;
   margin-left: 1rem;
   width: 30%;
+  background-image: url();
 }
+
+.profileHeader {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.profileHeader .avatar {
+  border: 1px solid #ccd6dd;
+  border-radius: 50%;
+  width: 3em;
+  height: 3em;
+}
+
 
 #editPanel h2, #followPanel h2 {
   font-size: x-large;
@@ -224,7 +239,7 @@
 .editItem label {
   font-size: 1.25rem;
   font-weight: normal;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.5rem;
 }
 
 .inputLine {
@@ -242,7 +257,7 @@
   border-radius: 0.5rem;
 }
 
-#followPanel {
+#bucketPanel {
   padding: 0.5rem 1.5rem 1rem 1.5rem;
   width: 100%;
 }
