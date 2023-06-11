@@ -6,12 +6,11 @@ export default class BucketList {
      - When the user tries to follow someone, the onAdd callback is called with the user ID.
      - When the user clicks on the remove button next to someone they're following, onRemove
        is called with the user ID being removed. */
-  constructor(parent, onAdd, onRemove) {
-    this._handleAdd = this._handleAdd.bind(this);
+  constructor(parent, onRemove) {
     this._handleRemove = this._handleRemove.bind(this);
 
     /* This is shorthand syntax, equivalent to { onAdd: onAdd, onRemove: onRemove } */
-    this._callbacks = { onAdd, onRemove };
+    this._callbacks = { onRemove };
     /* Defines this._list and this._form. */
     this._createElements();
     parent.append(this._list, this._form);
@@ -46,25 +45,6 @@ export default class BucketList {
     this._list.classList.add("bucketList");
     this._form = document.createElement("form");
     this._form.classList.add("bucketForm");
-
-    let input = document.createElement("input");
-    input.name = "userid";
-    input.placeholder = "Follow user";
-    this._form.append(input);
-
-    let button = document.createElement("button");
-    button.type = "submit";
-    button.textContent = "Add";
-    this._form.append(button);
-
-    this._form.addEventListener("submit", this._handleAdd);
-  }
-
-  _handleAdd(event) {
-    event.preventDefault();
-    let id = this._form.userid.value;
-    this._form.reset();
-    this._callbacks.onAdd(id);
   }
 
   _handleRemove(event) {

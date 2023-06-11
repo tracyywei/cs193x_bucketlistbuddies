@@ -10,7 +10,6 @@ export default class App {
 
     this._handleLogin = this._handleLogin.bind(this);
     this._loginForm = document.querySelector("#loginForm");
-    this._loginForm.listUsers.addEventListener("click", this._onListUsers);
     this._loginForm.login.addEventListener("click", this._handleLogin);
 
     this._postForm = document.querySelector("#postForm");
@@ -23,11 +22,10 @@ export default class App {
     document.querySelector("#nameSubmit").addEventListener("click", this._handleNameChange);
     document.querySelector("#avatarSubmit").addEventListener("click", this._handleAvatarChange);
 
-    // follow and unfollow
-    this._handleFollow = this._handleFollow.bind(this);
+    // add and delete bucket list items
     this._handleUnfollow = this._handleUnfollow.bind(this);
 
-    this._followList = new FollowList(document.querySelector("#followContainer"), this._handleFollow, this._handleUnfollow);
+    this._bucketList = new BucketList(document.querySelector("#bucketContainer"), this._handleUnfollow);
 
     // creating new post
     this._handlePost = this._handlePost.bind(this);
@@ -115,11 +113,32 @@ export default class App {
     document.querySelector("#feed").append(elem);
   }
 
+  /* Add the given Post object to the user's own posts feed. */
+  _displayMyPost(post) {
+    /* Make sure we receive a Post object. */
+    if (!(post instanceof Post)) throw new Error("displayPost wasn't passed a Post object");
+
+    let elem = document.querySelector("#userTemplatePost").cloneNode(true);
+    elem.id = "";
+
+    let avatar = elem.querySelector(".avatar");
+    avatar.src = post.user.avatarURL;
+    avatar.alt = `${post.user}'s avatar`;
+
+    elem.querySelector(".name").textContent = post.user;
+    elem.querySelector(".userid").textContent = post.user.id;
+    elem.querySelector(".time").textContent = post.time.toLocaleString();
+    elem.querySelector(".text").textContent = post.text;
+
+    document.querySelector("#myFeed").append(elem);
+  }
+
   /* Load (or reload) a user's profile. Assumes that this._user has been set to a User instance. */
   async _loadProfile() {
     document.querySelector("#welcome").classList.add("hidden");
     document.querySelector("#main").classList.remove("hidden");
     document.querySelector("#idContainer").textContent = this._user.id;
+    document.querySelector("#phoneContainer").textContent = this._user.phone;
     /* Reset the feed. */
     document.querySelector("#feed").textContent = "";
 
@@ -128,15 +147,23 @@ export default class App {
     this._postForm.querySelector(".name").textContent = this._user;
     this._postForm.querySelector(".userid").textContent = this._user.id;
 
+    // Update the avatar in the edit profile panel
+    document.querySelector(".profileHeader").querySelector(".avatar").src = this._user.avatarURL;
+
     // In the sidebar, their user ID is shown, and their display name and avatar URL are filled in the <input>s
     document.querySelector("#avatarInput").value = this._user.avatarURL;
     document.querySelector("#nameInput").value = this._user;
 
     // "Following" panel shows a list of users they are currently following
-    let userList = this._user.followers;
-    await this._followList.setList(userList);
+    let userList = this._user.activities;
+    await this._bucketList.setList(userList);
 
-    // The feed panel on the left shows the posts by the users they follow, as well as their own posts, from newest to oldest.
+    let myFeed = await this._user.getUserPosts();
+    for (let post of myFeed) {
+      this._displaymyPost(new Post(post));
+    }
+
+    // The feed panel
     let userFeed = await this._user.getFeed();
     for (let post of userFeed) {
       this._displayPost(new Post(post));

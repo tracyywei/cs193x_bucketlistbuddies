@@ -15,6 +15,13 @@
   box-shadow: 1px 1px 1px 1px lightgray;
 }
 
+.bucketpaper {
+  padding: 1rem;
+  background-color: rgb(170, 226, 194);
+  border-radius: 0.6rem;
+  box-shadow: 1px 1px 1px 1px lightgray;
+}
+
 /***** Header *****/
 
 .brand {
@@ -49,6 +56,7 @@
 
 #loginForm input {
   width: 12em;
+  color: black;
 }
 
 /***** Welcome *****/
@@ -241,22 +249,48 @@
 }
 
 .profileHeader {
+  align-items: center;
   display: flex;
-  justify-content: space-between;
-  margin-top: 1rem;
+  justify-content: left;
 }
 
 .profileHeader .avatar {
   border: 1px solid #ccd6dd;
   border-radius: 50%;
-  width: 3em;
-  height: 3em;
+  width: 4em;
+  height: 4em;
+  align-items: center;
+  margin-left: 1rem;
+  margin-right: 1rem;
 }
 
+.profileHeader > * {
+  font-weight: bold;
+  font-size: 1.25rem;
+  align-items: center;
+}
 
-#editPanel h2, #followPanel h2 {
+#idContainer {
+  font-weight: bold;
+  font-size: 1.25rem;
+  font-size: x-large;
+  margin-bottom: 0.5rem;
+}
+
+#phoneContainer {
+  font-size: 1rem;
+  font-style: italic;
+}
+
+#editPanel h2 {
   font-size: x-large;
   font-weight: bold;
+}
+
+#bucketPanel h2 {
+  font-size: large;
+  font-weight: bold;
+  color: #097969;
 }
 
 #editPanel {
@@ -291,6 +325,7 @@
 }
 
 #bucketPanel {
+  margin-top: 1.25rem;
   padding: 0.5rem 1.5rem 1rem 1.5rem;
   width: 100%;
 }
