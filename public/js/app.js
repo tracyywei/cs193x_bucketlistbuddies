@@ -1,4 +1,4 @@
-import FollowList from "./followlist.js";
+import BucketList from "./bucketlist.js";
 import User, { Post } from "./user.js";
 
 export default class App {
@@ -40,7 +40,8 @@ export default class App {
   async _handleLogin(event) {
     event.preventDefault();
     let curID = this._loginForm.userid.value;
-    this._user = await User.loadOrCreate(curID);
+    let curPhone = this._loginForm.phoneNum.value;
+    this._user = await User.loadOrCreate(curID, curPhone);
     this._loadProfile();
   }
 
@@ -58,6 +59,12 @@ export default class App {
     this._user.save();
     this._loadProfile();
   }
+
+  /* add item to bucket list */
+
+
+  /* remove item from bucket list */
+
 
   /* follow a user */
   async _handleFollow(id) {

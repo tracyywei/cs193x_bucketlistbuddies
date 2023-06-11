@@ -28,7 +28,7 @@
         <h2>Log in to find a bucket list buddy!</h2>
     </main>
 
-    <main id="main" class="hidden">
+    <main id="main">
       <div class="widthContainer">
         <section id="feedPanel">
           <form id="postForm" class="post paper">
@@ -63,7 +63,7 @@
               <div class="text"><b></b></div>
               <br>
               <div class="iconHeader">
-                <img class="addToList" src="images/bucket.png" alt="Verified">
+                <img class="addToList" src="images/add-sign.png" alt="Add button">
               </div>
             </div>
           </div>
@@ -84,7 +84,7 @@
                 <div class="text"><b>Fountain hop</b></div>
                 <br>
                 <div class="iconHeader">
-                  <img class="addToList" src="images/bucket.png" alt="Verified">
+                  <img class="addToList" src="images/add-sign.png" alt="Add button">
                 </div>
               </div>
             </div>
@@ -103,7 +103,7 @@
                 <div class="text"><b>Go to Half Moon Bay</b></div>
                 <br>
                 <div class="iconHeader">
-                  <img class="addToList" src="images/bucket.png" alt="Verified">
+                  <img class="addToList" src="images/add-sign.png" alt="Add button">
                 </div>
               </div>
             </div>
@@ -122,7 +122,7 @@
                 <div class="text"><b>Go skydiving</b></div>
                 <br>
                 <div class="iconHeader">
-                  <img class="addToList" src="images/bucket.png" alt="Verified">
+                  <img class="addToList" src="images/add-sign.png" alt="Add button">
                 </div>
               </div>
             </div>
@@ -141,7 +141,7 @@
                 <div class="text"><b>Climb the Memchu roof</b></div>
                 <br>
                 <div class="iconHeader">
-                  <img class="addToList" src="images/bucket.png" alt="Verified">
+                  <img class="addToList" src="images/add-sign.png" alt="Add button">
                 </div>
               </div>
             </div>
@@ -149,8 +149,16 @@
         </section>
 
         <section id="sidebar">
+          <section id="bucketPanel" class="paper">
+            <h2>My bucket list:</h2>
+            <div id="bucketContainer"></div>
+          </section>
+
           <section id="editPanel" class="paper">
-            <h2>Edit Profile</h2>
+            <div class="profileHeader">
+                <h2>Edit Profile</h2>
+                <img class="avatar" src="images/default.png" alt="">
+            </div>
             <div class="editItem">
               <label>User ID:</label>
               <div id="idContainer"></div>
@@ -173,11 +181,6 @@
                 <button name="submit" id="avatarSubmit"><img src="images/save.svg" alt="Save"></button>
               </div>
             </form>
-          </section>
-
-          <section id="followPanel" class="paper">
-            <h2>My bucket list:</h2>
-            <div id="followContainer"></div>
           </section>
         </section>
       </div>

@@ -1,7 +1,7 @@
 /* A DOM component which displays a list of users (strings) and allows the user to add and remove them.
    Note that the list will not automatically update after a call to onAdd or onRemove; you must call
    setList to give it a new list whenever the list of users has changed. */
-export default class FollowList {
+export default class BucketList {
   /* Create a new empty list and add it to the tree under parent.
      - When the user tries to follow someone, the onAdd callback is called with the user ID.
      - When the user clicks on the remove button next to someone they're following, onRemove
@@ -18,20 +18,20 @@ export default class FollowList {
   }
 
   /* Set the list of user IDs to display. users is an Array of strings. */
-  setList(users) {
+  setList(goals) {
     this._list.textContent = "";
-    for (let user of users) {
+    for (let goal of goals) {
       let li = document.createElement("li");
       let text = document.createElement("span");
       text.classList.add("text");
-      text.textContent = user;
+      text.textContent = goal;
       li.append(text);
 
       let button = document.createElement("button");
       button.type = "button";
       button.classList.add("remove");
       /* Set this attribute to make the button readable with assistive technology. */
-      button.setAttribute("aria-label", `Remove ${user}`);
+      button.setAttribute("aria-label", `Remove ${goal}`);
       button.textContent = "\u00d7"; /* The "times" character */
       button.addEventListener("click", this._handleRemove);
       li.append(button);
@@ -43,9 +43,9 @@ export default class FollowList {
   /* Create the DOM elements for this component, storing them in instance variables. */
   _createElements() {
     this._list = document.createElement("ul");
-    this._list.classList.add("followList");
+    this._list.classList.add("bucketList");
     this._form = document.createElement("form");
-    this._form.classList.add("followForm");
+    this._form.classList.add("bucketForm");
 
     let input = document.createElement("input");
     input.name = "userid";

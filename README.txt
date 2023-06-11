@@ -1,19 +1,18 @@
 CS193X Final Project
 ====================
 
-Project Title: <TODO>
-Your Name: <TODO>
-Your SUNetID: <TODO: the part of your email before the @, not the number>
+Project Title: Bucket List Buddies
+Your Name: Tracy Wei
+Your SUNetID: tracywei
 
 Overview
 --------
-<TODO: A short description of your project and what it does.>
+"Bucket List Buddies" is a social app that connects users to other users through their shared interests in activities. 
 
 Running
 -------
-<TODO: In general, we should be able to `npm install` and `npm start` your project. If there is anything else we need to know about running your project, please let us know here.>
-
-Do we need to load data from init_db.mongodb? <TODO: Yes/No>
+To run the project, you need to `npm install` and `npm start`.
+Do we need to load data from init_db.mongodb? Yes
 
 Features
 --------
@@ -22,6 +21,7 @@ Features
 Collaboration and libraries
 ---------------------------
 <TODO: Identify any sources you have consulted or libraries/external code you used. If your project overlaps with another project or coursework for another class, please describe the overlap and the parts specific to you/193X here.>
+My project overlaps with Assignment 3.1 and 3.2.
 
 Anything else?
 -------------

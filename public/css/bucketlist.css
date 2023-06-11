@@ -1,9 +1,9 @@
-.activitiesList {
+.bucketList {
   list-style: none;
   padding-left: 1rem;
 }
 
-.activitiesList .remove {
+.bucketList .remove {
   background-color: transparent;
   border: none;
   color: darkred;
@@ -11,11 +11,11 @@
   padding: 0;
 }
 
-.activitiesForm {
+.bucketForm {
   display: flex;
   gap: 1rem;
 }
 
-.activitiesForm input {
+.bucketForm input {
   flex-grow: 1;
 }
