@@ -7,17 +7,30 @@
 
 * {
   box-sizing: inherit;
-  color: #8C1515;
+  color: #003796;
 }
 
 input {
-  color: #8C1515;
+  color: #538fcf;
 }
 
+/* Credits for rainbow animation background: _________ */
 body {
   margin: 0;
   font-family: "Open Sans", sans-serif;
-  background-color: #8C1515;
+  /*background: linear-gradient(to right, #bcdcff 0%,#a8ffef 19%,#ceffab 40%,#f4d17f 60%,#ffaef0 83%,#b1d5ff 100%);
+  background-size: 200% auto;*/
+  background-color: lightskyblue;
+  /*animation: bg 15s linear infinite ;*/
+}
+
+@keyframes bg {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
 }
 
 h1 {
@@ -33,11 +46,11 @@ label {
 }
 
 a {
-  color: white;
+  color: blue;
 }
 
 button {
-  background-color: #097969;
+  background-color: #003796;
   border: 1px solid white;
   border-radius: 0.75rem;
   color: white;
@@ -76,4 +89,8 @@ textarea {
 input:focus, textarea:focus {
   background-color: white;
   border: 1px solid #ccd6dd;
+}
+
+.text {
+  font-weight: bold;
 }

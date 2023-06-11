@@ -6,8 +6,6 @@ export default class App {
     /* Store the currently logged-in user. */
     this._user = null;
 
-    this._onListUsers = this._onListUsers.bind(this);
-
     this._handleLogin = this._handleLogin.bind(this);
     this._loginForm = document.querySelector("#loginForm");
     this._loginForm.login.addEventListener("click", this._handleLogin);
@@ -23,9 +21,8 @@ export default class App {
     document.querySelector("#avatarSubmit").addEventListener("click", this._handleAvatarChange);
 
     // add and delete bucket list items
-    this._handleUnfollow = this._handleUnfollow.bind(this);
-
-    this._bucketList = new BucketList(document.querySelector("#bucketContainer"), this._handleUnfollow);
+    this._handleDelete = this._handleDelete.bind(this);
+    this._bucketList = new BucketList(document.querySelector("#bucketContainer"), this._handleDelete);
 
     // creating new post
     this._handlePost = this._handlePost.bind(this);
@@ -62,19 +59,22 @@ export default class App {
 
 
   /* remove item from bucket list */
-
-
-  /* follow a user */
-  async _handleFollow(id) {
-    await this._user.addFollow(id);
-    this._loadProfile();
-  }
-
-  /* unfollow a user */
-  async _handleUnfollow(id) {
+  async _handleDelete(id) {
     await this._user.deleteFollow(id);
     this._loadProfile();
   }
+
+  // /* follow a user */
+  // async _handleFollow(id) {
+  //   await this._user.addFollow(id);
+  //   this._loadProfile();
+  // }
+
+  // /* unfollow a user */
+  // async _handleUnfollow(id) {
+  //   await this._user.deleteFollow(id);
+  //   this._loadProfile();
+  // }
 
   /* make a new post */
   async _handlePost(event) {
@@ -86,12 +86,6 @@ export default class App {
   }
 
   /*** Helper methods ***/
-
-  async _onListUsers() {
-    let users = await User.listUsers();
-    let usersStr = users.join("\n");
-    alert(`List of users:\n\n${usersStr}`);
-  }
 
   /* Add the given Post object to the feed. */
   _displayPost(post) {
@@ -141,6 +135,7 @@ export default class App {
     document.querySelector("#phoneContainer").textContent = this._user.phone;
     /* Reset the feed. */
     document.querySelector("#feed").textContent = "";
+    document.querySelector("#myFeed").textContent = "";
 
     /* Update the avatar, name, and user ID in the new post form */
     this._postForm.querySelector(".avatar").src = this._user.avatarURL;
@@ -155,12 +150,12 @@ export default class App {
     document.querySelector("#nameInput").value = this._user;
 
     // "Following" panel shows a list of users they are currently following
-    let userList = this._user.activities;
-    await this._bucketList.setList(userList);
+    // let userList = this._user.activities;
+    // await this._bucketList.setList(userList);
 
     let myFeed = await this._user.getUserPosts();
     for (let post of myFeed) {
-      this._displaymyPost(new Post(post));
+      this._displayMyPost(new Post(post));
     }
 
     // The feed panel

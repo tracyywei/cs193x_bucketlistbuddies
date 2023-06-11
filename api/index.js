@@ -112,7 +112,16 @@ api.get("/users/:id/myposts", async (req, res) => {
   let user = res.locals.user;
   let activities = user.activities;
   let userPosts = await Posts.find({ text: { $in: activities } }).toArray();
-  res.json({ "posts": userPosts });
+  let userFeed = [];
+  for (let post of userPosts) {
+    let u = await Users.findOne({ id: post.userId });
+    delete u._id;
+    delete u.phone;
+    delete u.activities;
+    let p = { "user": u, "time": post.time, "text": post.text };
+    userFeed.push(p);
+  }
+  res.json({ "posts": userFeed });
 });
 
 // GET /users/:id/feed
@@ -123,7 +132,12 @@ api.get("/users/:id/feed", async (req, res) => {
   let userFeed = [];
   for (let post of allPosts) {
     if (!activities.includes(post.text)) {
-      userFeed.push(post);
+      let u = await Users.findOne({ id: post.userId });
+      delete u._id;
+      delete u.phone;
+      delete u.activities;
+      let p = { "user": u, "time": post.time, "text": post.text };
+      userFeed.push(p);
     }
   }
   res.json({ "posts": userFeed });
