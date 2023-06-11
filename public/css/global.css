@@ -32,6 +32,10 @@ label {
   font-weight: bold;
 }
 
+a {
+  color: white;
+}
+
 button {
   background-color: #097969;
   border: 1px solid white;

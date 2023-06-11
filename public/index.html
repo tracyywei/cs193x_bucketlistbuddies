@@ -23,9 +23,11 @@
       </div>
     </header>
 
+
     <main id="welcome">
-        <h1>Welcome to <strong class="brand">Bucket List Buddies : Stanford Edition 🌲</strong>!</h1>
-        <h2>Log in to find a bucket list buddy!</h2>
+      <h1><a href="test_api.html">API tester</a></h1>
+      <h1>Welcome to <strong class="brand">Bucket List Buddies : Stanford Edition 🌲</strong>!</h1>
+      <h2>Log in to find a bucket list buddy!</h2>
     </main>
 
     <main id="main">
@@ -48,6 +50,26 @@
             </div>
           </form>
 
+          <div id="userTemplatePost" class="post paper">
+            <img class="avatar" src="images/default.png" alt="">
+            <div>
+              <div class="postHeader">
+                <span class="author">
+                  <strong class="name"></strong>
+                  <img class="verified" src="images/verified.svg" alt="Verified">
+                  (<span class="userid"></span>)
+                  <span class="time"></span>
+                </span>
+              </div>
+              Does anyone want to...
+              <div class="text"><b></b></div>
+              <br>
+              <div class="iconHeader">
+                <img class="addToList" src="images/added.png" alt="Add button">
+              </div>
+            </div>
+          </div>
+
           <div id="templatePost" class="post paper">
             <img class="avatar" src="images/default.png" alt="">
             <div>
@@ -68,6 +90,34 @@
             </div>
           </div>
 
+          <main id="feedLabel">
+            <h1>My Posts</h1>
+          </main>
+          <div id="myFeed">
+            <div class="post paper">
+              <img class="avatar" src="images/default.png" alt="">
+              <div>
+                <div class="postHeader">
+                  <span class="author">
+                    <strong class="name"></strong>
+                    <img class="verified" src="images/verified.svg" alt="Verified">
+                    (<span class="userid"></span>)
+                    <span class="time"></span>
+                  </span>
+                </div>
+                Does anyone want to...
+                <div class="text"><b>Picnic on the McMurty roof</b></div>
+                <br>
+                <div class="iconHeader">
+                  <img class="addToList" src="images/added.png" alt="Add button">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <main id="feedLabel">
+            <h1>Other Posts</h1>
+          </main>
           <div id="feed">
             <div class="post paper">
               <img class="avatar" src="images/default.png" alt="">
