@@ -1,4 +1,4 @@
-import BucketList from "./bucketlist.js";
+//import BucketList from "./bucketlist.js";
 import User, { Post } from "./user.js";
 
 export default class App {
@@ -20,10 +20,6 @@ export default class App {
     document.querySelector("#nameSubmit").addEventListener("click", this._handleNameChange);
     document.querySelector("#avatarSubmit").addEventListener("click", this._handleAvatarChange);
 
-    // add and delete bucket list items
-    this._handleDelete = this._handleDelete.bind(this);
-    this._bucketList = new BucketList(document.querySelector("#bucketContainer"), this._handleDelete);
-
     // creating new post
     this._handlePost = this._handlePost.bind(this);
     document.querySelector("#postButton").addEventListener("click", this._handlePost);
@@ -37,7 +33,9 @@ export default class App {
     let curID = this._loginForm.userid.value;
     let curPhone = this._loginForm.phoneNum.value;
     this._user = await User.loadOrCreate(curID, curPhone);
-    this._loadProfile();
+    if (this._user !== null) {
+      this._loadProfile();
+    }
   }
 
   /* edit their display name and avatar URL */
@@ -54,21 +52,6 @@ export default class App {
     this._user.save();
     this._loadProfile();
   }
-
-  /* add item to bucket list */
-
-
-  /* remove item from bucket list */
-  async _handleDelete(goal) {
-    await this._user.deleteItem(goal);
-    this._loadProfile();
-  }
-
-  // /* follow a user */
-  // async _handleFollow(id) {
-  //   await this._user.addFollow(id);
-  //   this._loadProfile();
-  // }
 
   /* make a new post */
   async _handlePost(event) {
@@ -100,10 +83,8 @@ export default class App {
 
     let addButton = elem.querySelector(".addToList");
     addButton.addEventListener("click", () => {
-      console.log(post.text);
       this._user.addItem(post.text); // Add the post to the activities list
-      // Optionally, you can also remove the post from the feed after adding it to the activities list
-      elem.remove();
+      this._loadProfile();
     });
 
     document.querySelector("#feed").append(elem);
@@ -126,11 +107,19 @@ export default class App {
     elem.querySelector(".time").textContent = post.time.toLocaleString();
     elem.querySelector(".text").textContent = post.text;
 
+    if (post.user.id === this._user.id) {
+      elem.querySelector(".texting").style.display = "none";
+    }
+
     let checkButton = elem.querySelector(".checkoff");
     checkButton.addEventListener("click", () => {
-      this._user.deleteItem(post.text); // Add the post to the activities list
-      // Optionally, you can also remove the post from the feed after adding it to the activities list
-      elem.remove();
+      this._user.deleteItem(post.text); // Delete the post completely
+      this._loadProfile();
+    });
+
+    let textButton = elem.querySelector(".texting");
+    textButton.addEventListener("click", () => {
+      alert("Texting " + post.user + " (" + post.user.phone + ")...");
     });
 
     document.querySelector("#myFeed").append(elem);
@@ -157,11 +146,6 @@ export default class App {
     // In the sidebar, their user ID is shown, and their display name and avatar URL are filled in the <input>s
     document.querySelector("#avatarInput").value = this._user.avatarURL;
     document.querySelector("#nameInput").value = this._user;
-
-    // "Following" panel shows a list of users they are currently following
-    // let userList = this._user.activities;
-    // console.log(userList);
-    // await this._bucketList.setList(userList);
 
     let myFeed = await this._user.getUserPosts();
     for (let post of myFeed) {

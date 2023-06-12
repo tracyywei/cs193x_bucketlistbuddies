@@ -84,7 +84,7 @@
 }
 
 #welcome .brand {
-  color: #097969;
+  color: #003796;
   font-weight: bold;
 }
 
@@ -233,6 +233,13 @@
   margin-left: 0.25em;
   margin-right: 0.25rem;
 }
+
+.iconHeader .texting {
+  width: 2em;
+  margin-left: 0.25em;
+  margin-right: 0.25rem;
+}
+
 
 /***** Sidebar *****/
 

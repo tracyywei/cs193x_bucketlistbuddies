@@ -116,7 +116,6 @@ api.get("/users/:id/myposts", async (req, res) => {
   for (let post of userPosts) {
     let u = await Users.findOne({ id: post.userId });
     delete u._id;
-    delete u.phone;
     delete u.activities;
     let p = { "user": u, "time": post.time, "text": post.text };
     userFeed.push(p);
@@ -171,7 +170,7 @@ api.post("/users/:id/add", async (req, res) => {
     res.status(400).json({ error: "Missing target" });
     return;
   }
-  let targetPost = await Posts.find({ text: target });
+  let targetPost = await Posts.findOne({ text: target });
   // 404 if user target does not exist
   if (!targetPost) {
     res.status(404).json({ error: `No post of ${target}` });
@@ -203,16 +202,26 @@ api.delete("/users/:id/add", async (req, res) => {
   let index = bucketList.indexOf(target);
   // 400 if the target item isn't on the bucket list of the requesting user
   if (index < 0) {
-    res.status(400).json({ error: `${user.id} does have ${target} on their bucket list` });
+    res.status(400).json({ error: `${user.id} does not have "${target}" on their bucket list` });
     return;
   }
   // deleting the activity
   bucketList.splice(index, 1);
+  await Posts.deleteOne({ text: target });
   await Users.updateOne({ id: user.id }, { $set: { activities: bucketList } });
-  await Posts.deleteOne({ id: user.id, text: target });
+
+  // delete the activity from all the users who put that in their bucket list
+  let allUsers = await Users.find().toArray();
+  for (let u of allUsers) {
+    let curIndex = u.activities.indexOf(target);
+    if (curIndex >= 0) {
+      let bList = u.activities;
+      bList.splice(curIndex, 1);
+      await Users.updateOne({ id: u.id }, { $set: { activities: bList } });
+    }
+  }
   res.json({ success: true });
 });
-
 
 /* Catch-all route to return a JSON error if endpoint not defined.
    Be sure to put all of your endpoints above this one, or they will not be called. */

@@ -1,4 +1,8 @@
 db = connect("cs193xproject_buddies");
 db.dropDatabase();
-db.users.insertOne({ id: "tracywei", name: "Tracy", avatarURL: "images/stanford.png", phone: "000-000-0000", activities: [] });
+db.users.insertOne({ id: "tracywei", name: "Tracy", avatarURL: "images/stanford.png", phone: "000-000-0000", activities: ["Go fountain hopping"] });
+db.users.insertOne({ id: "aang", name: "Aang", avatarURL: "images/stanford.png", phone: "123-000-0000", activities: ["Climb the Memchu roof"] });
+db.users.insertOne({ id: "zuko", name: "Zuko", avatarURL: "images/stanford.png", phone: "000-123-0000", activities: ["Explore the steam tunnels"] });
 db.posts.insertOne({ userId: "tracywei", time: new Date(), text: "Go fountain hopping" });
+db.posts.insertOne({ userId: "zuko", time: new Date(), text: "Explore the steam tunnels" });
+db.posts.insertOne({ userId: "aang", time: new Date(), text: "Climb the Memchu roof" });
