@@ -59,8 +59,8 @@ export default class App {
 
 
   /* remove item from bucket list */
-  async _handleDelete(id) {
-    await this._user.deleteFollow(id);
+  async _handleDelete(goal) {
+    await this._user.deleteItem(goal);
     this._loadProfile();
   }
 
@@ -70,19 +70,13 @@ export default class App {
   //   this._loadProfile();
   // }
 
-  // /* unfollow a user */
-  // async _handleUnfollow(id) {
-  //   await this._user.deleteFollow(id);
-  //   this._loadProfile();
-  // }
-
   /* make a new post */
   async _handlePost(event) {
     event.preventDefault();
     let postText = document.querySelector("#newPost").value;
-    this._user.makePost(postText);
-    this._loadProfile();
+    await this._user.makePost(postText);
     document.querySelector("#newPost").value = "";
+    this._loadProfile();
   }
 
   /*** Helper methods ***/
@@ -103,6 +97,14 @@ export default class App {
     elem.querySelector(".userid").textContent = post.user.id;
     elem.querySelector(".time").textContent = post.time.toLocaleString();
     elem.querySelector(".text").textContent = post.text;
+
+    let addButton = elem.querySelector(".addToList");
+    addButton.addEventListener("click", () => {
+      console.log(post.text);
+      this._user.addItem(post.text); // Add the post to the activities list
+      // Optionally, you can also remove the post from the feed after adding it to the activities list
+      elem.remove();
+    });
 
     document.querySelector("#feed").append(elem);
   }
@@ -150,8 +152,9 @@ export default class App {
     document.querySelector("#nameInput").value = this._user;
 
     // "Following" panel shows a list of users they are currently following
-    // let userList = this._user.activities;
-    // await this._bucketList.setList(userList);
+    let userList = this._user.activities;
+    console.log(userList);
+    await this._bucketList.setList(userList);
 
     let myFeed = await this._user.getUserPosts();
     for (let post of myFeed) {

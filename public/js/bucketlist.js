@@ -49,7 +49,7 @@ export default class BucketList {
 
   _handleRemove(event) {
     let li = event.currentTarget.closest("li");
-    let id = li.querySelector(".text").textContent;
-    this._callbacks.onRemove(id);
+    let text = li.querySelector(".text").textContent;
+    this._callbacks.onRemove(text);
   }
 }
