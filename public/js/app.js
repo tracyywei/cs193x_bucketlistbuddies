@@ -126,6 +126,13 @@ export default class App {
     elem.querySelector(".time").textContent = post.time.toLocaleString();
     elem.querySelector(".text").textContent = post.text;
 
+    let checkButton = elem.querySelector(".checkoff");
+    checkButton.addEventListener("click", () => {
+      this._user.deleteItem(post.text); // Add the post to the activities list
+      // Optionally, you can also remove the post from the feed after adding it to the activities list
+      elem.remove();
+    });
+
     document.querySelector("#myFeed").append(elem);
   }
 
@@ -152,9 +159,9 @@ export default class App {
     document.querySelector("#nameInput").value = this._user;
 
     // "Following" panel shows a list of users they are currently following
-    let userList = this._user.activities;
-    console.log(userList);
-    await this._bucketList.setList(userList);
+    // let userList = this._user.activities;
+    // console.log(userList);
+    // await this._bucketList.setList(userList);
 
     let myFeed = await this._user.getUserPosts();
     for (let post of myFeed) {

@@ -209,6 +209,7 @@ api.delete("/users/:id/add", async (req, res) => {
   // deleting the activity
   bucketList.splice(index, 1);
   await Users.updateOne({ id: user.id }, { $set: { activities: bucketList } });
+  await Posts.deleteOne({ id: user.id, text: target });
   res.json({ success: true });
 });
 
