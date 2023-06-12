@@ -96,3 +96,7 @@ input:focus, textarea:focus {
 .text {
   font-weight: bold;
 }
+
+li {
+  justify-content: left;
+}

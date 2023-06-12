@@ -73,6 +73,12 @@ export default class User {
     return data.posts;
   }
 
+  /* Gets the post's buddies. Returns an Array of User objects. */
+  async getBuddies(text) {
+    let data = await apiRequest("GET", `/posts/${text}`);
+    return data.users;
+  }
+
   /* Create a new post with the given text. */
   async makePost(text) {
     await apiRequest("POST", `/users/${this.id}/posts`, { text });

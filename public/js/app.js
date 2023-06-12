@@ -1,4 +1,3 @@
-//import BucketList from "./bucketlist.js";
 import User, { Post } from "./user.js";
 
 export default class App {
@@ -91,7 +90,7 @@ export default class App {
   }
 
   /* Add the given Post object to the user's own posts feed. */
-  _displayMyPost(post) {
+  async _displayMyPost(post) {
     /* Make sure we receive a Post object. */
     if (!(post instanceof Post)) throw new Error("displayPost wasn't passed a Post object");
 
@@ -122,7 +121,24 @@ export default class App {
       alert("Texting " + post.user + " (" + post.user.phone + ")...");
     });
 
+    let text = post.text;
+    let buddies = await this._user.getBuddies(text);
+    for (let bud of buddies) {
+      let buddy = document.querySelector("#buddy").cloneNode(true);
+      buddy.classList.remove("hidden");
+      buddy.querySelector(".name").textContent = bud.name;
+      buddy.querySelector(".userid").textContent = bud.id;
+      buddy.querySelector(".profilepic").src = bud.avatarURL;
+      buddy.querySelector(".profilepic").alt = `${bud.name}'s avatar`;
+      //console.log(buddy);
+      //document.querySelector("#buddiesContainer").append(buddy);
+      elem.querySelector("#buddy").classList.remove("hidden");
+      elem.querySelector("#buddiesContainer").append(buddy);
+      //console.log(document.querySelector("#buddiesContainer"));
+    }
+
     document.querySelector("#myFeed").append(elem);
+    console.log(elem);
   }
 
   /* Load (or reload) a user's profile. Assumes that this._user has been set to a User instance. */

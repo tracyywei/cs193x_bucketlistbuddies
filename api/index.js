@@ -142,6 +142,27 @@ api.get("/users/:id/feed", async (req, res) => {
   res.json({ "posts": userFeed });
 });
 
+
+/* Middleware */
+api.use("/posts/:text", async (req, res, next) => {
+  let text = req.params.text;
+  let buddies = [];
+  let allUsers = await Users.find().toArray();
+  for (let u of allUsers) {
+    if (u.activities.includes(text)) {
+      buddies.push(u);
+    }
+  }
+  res.locals.buddies = buddies;
+  next();
+});
+
+// GET /users/:text
+api.get("/posts/:text", async (req, res) => {
+  let buddies = res.locals.buddies;
+  res.json({ "users": buddies });
+});
+
 // POST /users/:id/posts
 api.post("/users/:id/posts", async (req, res) => {
   let text = req.body.text;

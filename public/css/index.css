@@ -1,5 +1,4 @@
 @import "./global.css";
-@import "./bucketlist.css";
 
 /***** Generic Containers ******/
 
@@ -230,6 +229,16 @@
 .iconHeader .texting {
   width: 2em;
   margin-left: 0.25em;
+  margin-right: 0.25rem;
+}
+
+#buddiesContainer {
+  align-items: left;
+}
+
+#buddiesContainer .profilepic {
+  width: 1em;
+  margin-left: 0.125rem;
   margin-right: 0.25rem;
 }
 
