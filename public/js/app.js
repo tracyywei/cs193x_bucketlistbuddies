@@ -64,7 +64,7 @@ export default class App {
   /*** Helper methods ***/
 
   /* Add the given Post object to the feed. */
-  _displayPost(post) {
+  async _displayPost(post) {
     /* Make sure we receive a Post object. */
     if (!(post instanceof Post)) throw new Error("displayPost wasn't passed a Post object");
 
@@ -86,41 +86,6 @@ export default class App {
       this._loadProfile();
     });
 
-    document.querySelector("#feed").append(elem);
-  }
-
-  /* Add the given Post object to the user's own posts feed. */
-  async _displayMyPost(post) {
-    /* Make sure we receive a Post object. */
-    if (!(post instanceof Post)) throw new Error("displayPost wasn't passed a Post object");
-
-    let elem = document.querySelector("#userTemplatePost").cloneNode(true);
-    elem.id = "";
-
-    let avatar = elem.querySelector(".avatar");
-    avatar.src = post.user.avatarURL;
-    avatar.alt = `${post.user}'s avatar`;
-
-    elem.querySelector(".name").textContent = post.user;
-    elem.querySelector(".userid").textContent = post.user.id;
-    elem.querySelector(".time").textContent = post.time.toLocaleString();
-    elem.querySelector(".text").textContent = post.text;
-
-    if (post.user.id === this._user.id) {
-      elem.querySelector(".texting").style.display = "none";
-    }
-
-    let checkButton = elem.querySelector(".checkoff");
-    checkButton.addEventListener("click", () => {
-      this._user.deleteItem(post.text); // Delete the post completely
-      this._loadProfile();
-    });
-
-    let textButton = elem.querySelector(".texting");
-    textButton.addEventListener("click", () => {
-      alert("Texting " + post.user + " (" + post.user.phone + ")...");
-    });
-
     let text = post.text;
     let buddies = await this._user.getBuddies(text);
     for (let bud of buddies) {
@@ -137,8 +102,55 @@ export default class App {
       //console.log(document.querySelector("#buddiesContainer"));
     }
 
+    document.querySelector("#feed").append(elem);
+  }
+
+  /* Add the given Post object to the user's own posts feed. */
+  async _displayMyPost(post) {
+    /* Make sure we receive a Post object. */
+    if (!(post instanceof Post)) throw new Error("displayMyPost wasn't passed a Post object");
+
+    let elem = document.querySelector("#userTemplatePost").cloneNode(true);
+    elem.id = "";
+
+    let avatar = elem.querySelector(".avatar");
+    avatar.src = post.user.avatarURL;
+    avatar.alt = `${post.user}'s avatar`;
+
+    elem.querySelector(".name").textContent = post.user;
+    elem.querySelector(".userid").textContent = post.user.id;
+    elem.querySelector(".time").textContent = post.time.toLocaleString();
+    elem.querySelector(".text").textContent = post.text;
+
+    let checkButton = elem.querySelector(".checkoff");
+    checkButton.addEventListener("click", () => {
+      this._user.deleteItem(post.text); // Delete the post completely
+      this._loadProfile();
+    });
+
+    let text = post.text;
+    let buddies = await this._user.getBuddies(text);
+    for (let bud of buddies) {
+      let buddy = elem.querySelector(".buddy").cloneNode(true);
+      buddy.classList.remove("hidden");
+      buddy.querySelector(".name").textContent = bud.name;
+      buddy.querySelector(".userid").textContent = bud.id;
+      buddy.querySelector(".profilepic").src = bud.avatarURL;
+      buddy.querySelector(".profilepic").alt = `${bud.name}'s avatar`;
+      elem.querySelector("#buddiesContainer").append(buddy);
+    }
+    let buddyNames = [];
+    for (let n of buddies) {
+      buddyNames.push(n.name);
+    }
+
+    let textButton = elem.querySelector(".texting");
+    console.log(textButton);
+    textButton.addEventListener("click", () => {
+      alert("Group chat with " + buddyNames.toString() + " for bucket goal: " + post.text);
+    });
+
     document.querySelector("#myFeed").append(elem);
-    console.log(elem);
   }
 
   /* Load (or reload) a user's profile. Assumes that this._user has been set to a User instance. */

@@ -157,7 +157,7 @@ api.use("/posts/:text", async (req, res, next) => {
   next();
 });
 
-// GET /users/:text
+// GET /posts/:text
 api.get("/posts/:text", async (req, res) => {
   let buddies = res.locals.buddies;
   res.json({ "users": buddies });

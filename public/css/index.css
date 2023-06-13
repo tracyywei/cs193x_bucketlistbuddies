@@ -101,6 +101,10 @@
   display: none;
 }
 
+#main.hidden, #buddy {
+  display: none;
+}
+
 #main .widthContainer {
   display: flex;
 }
@@ -242,6 +246,12 @@
   margin-right: 0.25rem;
 }
 
+.buddy .texting {
+  width: 1em;
+  margin-left: 0.125rem;
+  margin-right: 0.25rem;
+}
+
 
 /***** Sidebar *****/
 
@@ -295,11 +305,6 @@
   font-weight: bold;
 }
 
-#bucketPanel h2 {
-  font-size: large;
-  font-weight: bold;
-}
-
 #editPanel {
   padding: 0.5rem 1.5rem;
 }
@@ -329,12 +334,6 @@
 .inputLine button {
   padding: 0.25rem;
   border-radius: 0.5rem;
-}
-
-#bucketPanel {
-  margin-top: 1.25rem;
-  padding: 0.5rem 1.5rem 1rem 1.5rem;
-  width: 100%;
 }
 
 /***** Animations *****/
