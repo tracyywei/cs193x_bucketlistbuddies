@@ -6,8 +6,6 @@ export default class App {
     this._user = null;
 
     this._handleLogin = this._handleLogin.bind(this);
-    // this._loginForm = document.querySelector("#loginForm");
-    // this._loginForm.login.addEventListener("click", this._handleLogin);
     this._loginForm = document.querySelector("#landingLogin");
     this._loginForm.login.addEventListener("click", this._handleLogin);
 
@@ -43,14 +41,14 @@ export default class App {
   async _handleNameChange(event) {
     event.preventDefault();
     this._user.name = document.querySelector("#nameInput").value;
-    this._user.save();
+    await this._user.save();
     this._loadProfile();
   }
 
   async _handleAvatarChange(event) {
     event.preventDefault();
     this._user.avatarURL = document.querySelector("#avatarInput").value;
-    this._user.save();
+    await this._user.save();
     this._loadProfile();
   }
 
@@ -83,8 +81,9 @@ export default class App {
     elem.querySelector(".text").textContent = post.text;
 
     let addButton = elem.querySelector(".addToList");
-    addButton.addEventListener("click", () => {
-      this._user.addItem(post.text); // Add the post to the activities list
+    addButton.addEventListener("click", async (event) => {
+      event.preventDefault();
+      await this._user.addItem(post.text); // Add the post to the activities list
       this._loadProfile();
     });
 
@@ -121,7 +120,8 @@ export default class App {
     elem.querySelector(".text").textContent = post.text;
 
     let checkButton = elem.querySelector(".checkoff");
-    checkButton.addEventListener("click", () => {
+    checkButton.addEventListener("click", async (event) => {
+      event.preventDefault();
       this._user.deleteItem(post.text); // Delete the post completely
       this._loadProfile();
     });
@@ -175,13 +175,13 @@ export default class App {
 
     let myFeed = await this._user.getUserPosts();
     for (let post of myFeed) {
-      this._displayMyPost(new Post(post));
+      await this._displayMyPost(new Post(post));
     }
 
     // The feed panel
     let userFeed = await this._user.getFeed();
     for (let post of userFeed) {
-      this._displayPost(new Post(post));
+      await this._displayPost(new Post(post));
     }
   }
 }

@@ -251,8 +251,10 @@
 
 #buddiesContainer .profilepic {
   width: 1em;
+  height: 1em;
   margin-left: 0.125rem;
   margin-right: 0.25rem;
+  border-radius: 50%;
 }
 
 .buddy .texting {
