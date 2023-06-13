@@ -14,11 +14,13 @@
     <header id="header">
       <div class="widthContainer">
         <h1 class="brand">bucket list buddies 🤝</h1>
-        <form id="loginForm">
+        <!-- <form id="loginForm">
           <input name="userid" placeholder="User ID">
           <input name="phoneNum" placeholder="Phone Number">
           <button type="submit" name="login">login</button>
-          <!-- <button type="button" name="listUsers" class="secondary">List Users</button>  -->
+        </form> -->
+        <form id="logoutForm" class="hidden">
+          <button type="submit" name="login">logout</button>
         </form>
       </div>
     </header>
@@ -26,9 +28,18 @@
 
     <main id="welcome">
       <div class="paper">
-        <h1><a href="test_api.html">API tester</a></h1>
-      <h1>Welcome to <strong class="brand">Bucket List Buddies : Stanford Edition 🌲</strong>!</h1>
-      <h2><i>Log in to find a bucket list buddy!</i></h2>
+        <h1>welcome to <strong class="brand">bucket list buddies 🤝 : stanford edition 🌲</strong>!</h1>
+        <h2><i>log in to find a bucket list buddy!</i></h2>
+        <!-- <form id="loginForm"> -->
+        <form id ="landingLogin">
+          <input name="userid" placeholder="user id">
+          <input name="phoneNum" placeholder="phone number">
+          <button type="submit" name="login">login</button>
+        </form>
+        <br>
+        <a href="test_api.html">API tester</a>
+          <!-- <button type="button" name="listUsers" class="secondary">List Users</button>  -->
+        <!-- </form> -->
       </div>
     </main>
 
@@ -96,7 +107,14 @@
               Does anyone want to...
               <div class="text"><b></b></div>
               <br>
-              <div class="postHeader"><span class="time"></span></div>
+              <div class="postHeader"><span class="time"></span></div><br>
+              <b>the buddies:</b>
+              <li class="buddy hidden">
+                <img class="profilepic" src="images/default.png" alt="User profile image">
+                <strong class="name"></strong>
+                (<span class="userid"></span>)
+              </li>
+              <ul id="buddiesContainer"></ul>
               <div class="iconHeader">
                 <img class="addToList" src="images/add-sign.png" alt="Add button">
               </div>

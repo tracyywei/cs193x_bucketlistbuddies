@@ -6,7 +6,9 @@ export default class App {
     this._user = null;
 
     this._handleLogin = this._handleLogin.bind(this);
-    this._loginForm = document.querySelector("#loginForm");
+    // this._loginForm = document.querySelector("#loginForm");
+    // this._loginForm.login.addEventListener("click", this._handleLogin);
+    this._loginForm = document.querySelector("#landingLogin");
     this._loginForm.login.addEventListener("click", this._handleLogin);
 
     this._postForm = document.querySelector("#postForm");
@@ -89,17 +91,13 @@ export default class App {
     let text = post.text;
     let buddies = await this._user.getBuddies(text);
     for (let bud of buddies) {
-      let buddy = document.querySelector("#buddy").cloneNode(true);
+      let buddy = elem.querySelector(".buddy").cloneNode(true);
       buddy.classList.remove("hidden");
       buddy.querySelector(".name").textContent = bud.name;
       buddy.querySelector(".userid").textContent = bud.id;
       buddy.querySelector(".profilepic").src = bud.avatarURL;
       buddy.querySelector(".profilepic").alt = `${bud.name}'s avatar`;
-      //console.log(buddy);
-      //document.querySelector("#buddiesContainer").append(buddy);
-      elem.querySelector("#buddy").classList.remove("hidden");
       elem.querySelector("#buddiesContainer").append(buddy);
-      //console.log(document.querySelector("#buddiesContainer"));
     }
 
     document.querySelector("#feed").append(elem);
@@ -145,7 +143,6 @@ export default class App {
     }
 
     let textButton = elem.querySelector(".texting");
-    console.log(textButton);
     textButton.addEventListener("click", () => {
       alert("Group chat with " + buddyNames.toString() + " for bucket goal: " + post.text);
     });
@@ -157,6 +154,7 @@ export default class App {
   async _loadProfile() {
     document.querySelector("#welcome").classList.add("hidden");
     document.querySelector("#main").classList.remove("hidden");
+    document.querySelector("#logoutForm").classList.remove("hidden");
     document.querySelector("#idContainer").textContent = this._user.id;
     document.querySelector("#phoneContainer").textContent = this._user.phone;
     /* Reset the feed. */
