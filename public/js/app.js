@@ -9,6 +9,10 @@ export default class App {
     this._loginForm = document.querySelector("#landingLogin");
     this._loginForm.login.addEventListener("click", this._handleLogin);
 
+    this._handleLogout = this._handleLogout.bind(this);
+    this._logoutForm = document.querySelector("#logoutForm");
+    this._logoutForm.logout.addEventListener("click", this._handleLogout);
+
     this._postForm = document.querySelector("#postForm");
     this._nameForm = document.querySelector("#nameItem");
     this._avatarForm = document.querySelector("#avatarItem");
@@ -35,6 +39,16 @@ export default class App {
     if (this._user !== null) {
       this._loadProfile();
     }
+  }
+
+  async _handleLogout(event) {
+    event.preventDefault();
+    document.querySelector("#feed").textContent = "";
+    document.querySelector("#myFeed").textContent = "";
+    document.querySelector("#welcome").classList.remove("hidden");
+    document.querySelector("#main").classList.add("hidden");
+    document.querySelector("#logoutForm").classList.add("hidden");
+    this._user = null;
   }
 
   /* edit their display name and avatar URL */
@@ -81,10 +95,9 @@ export default class App {
     elem.querySelector(".text").textContent = post.text;
 
     let addButton = elem.querySelector(".addToList");
-    addButton.addEventListener("click", async (event) => {
-      event.preventDefault();
-      await this._user.addItem(post.text); // Add the post to the activities list
-      this._loadProfile();
+    addButton.addEventListener("click", (event) => {
+      console.log(post.text);
+      this._handleAddButtonClick(event, post.text);
     });
 
     let text = post.text;
@@ -100,6 +113,12 @@ export default class App {
     }
 
     document.querySelector("#feed").append(elem);
+  }
+
+  async _handleAddButtonClick(event, text) {
+    event.preventDefault();
+    await this._user.addItem(text); // Add the post to the activities list
+    this._loadProfile();
   }
 
   /* Add the given Post object to the user's own posts feed. */
@@ -120,10 +139,8 @@ export default class App {
     elem.querySelector(".text").textContent = post.text;
 
     let checkButton = elem.querySelector(".checkoff");
-    checkButton.addEventListener("click", async (event) => {
-      event.preventDefault();
-      this._user.deleteItem(post.text); // Delete the post completely
-      this._loadProfile();
+    checkButton.addEventListener("click", (event) => {
+      this._handleCheckButtonClick(event, post.text);
     });
 
     let text = post.text;
@@ -148,6 +165,12 @@ export default class App {
     });
 
     document.querySelector("#myFeed").append(elem);
+  }
+
+  async _handleCheckButtonClick(event, text) {
+    event.preventDefault();
+    await this._user.deleteItem(text); // Delete the post completely
+    this._loadProfile();
   }
 
   /* Load (or reload) a user's profile. Assumes that this._user has been set to a User instance. */
@@ -178,7 +201,6 @@ export default class App {
       await this._displayMyPost(new Post(post));
     }
 
-    // The feed panel
     let userFeed = await this._user.getFeed();
     for (let post of userFeed) {
       await this._displayPost(new Post(post));

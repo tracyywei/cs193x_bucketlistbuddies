@@ -14,13 +14,8 @@
     <header id="header">
       <div class="widthContainer">
         <h1 class="brand">bucket list buddies 🤝</h1>
-        <!-- <form id="loginForm">
-          <input name="userid" placeholder="User ID">
-          <input name="phoneNum" placeholder="Phone Number">
-          <button type="submit" name="login">login</button>
-        </form> -->
         <form id="logoutForm" class="hidden">
-          <button type="submit" name="login">logout</button>
+          <button type="submit" name="logout">logout</button>
         </form>
       </div>
     </header>
@@ -29,17 +24,12 @@
     <main id="welcome">
       <div class="paper">
         <h1>welcome to <strong class="brand">bucket list buddies 🤝 : stanford edition 🌲</strong>!</h1>
-        <h2><i>log in to find a bucket list buddy!</i></h2>
-        <!-- <form id="loginForm"> -->
+        <h2><i>log in to find a bucket list buddy! new here? fill out the form to create an account</i></h2>
         <form id ="landingLogin">
           <input name="userid" placeholder="user id">
           <input name="phoneNum" placeholder="phone number">
           <button type="submit" name="login">login</button>
         </form>
-        <br>
-        <a href="test_api.html">API tester</a>
-          <!-- <button type="button" name="listUsers" class="secondary">List Users</button>  -->
-        <!-- </form> -->
       </div>
     </main>
 
@@ -80,7 +70,7 @@
               <div class="text"><b></b></div>
               <br>
               <div class="postHeader"><span class="time"></span></div><br>
-              <b>the buddies:</b>
+              <b>🤝 the buddies:</b>
               <li class="buddy hidden">
                 <img class="profilepic" src="images/default.png" alt="User profile image">
                 <strong class="name"></strong>
@@ -125,7 +115,7 @@
             <h1>🪣 my bucket list</h1>
           </main>
           <div id="myFeed"></div>
-
+          
           <main id="feedLabel">
             <h1>👀 other posts</h1>
           </main>
@@ -141,10 +131,6 @@
               <div id="phoneContainer"></div>
               </div>
           </div>
-          <!-- <section id="bucketPanel" class="bucketpaper">
-            <h2>🪣 My bucket list</h2>
-            <div id="bucketContainer"></div>
-          </section> -->
           
           <section id="editPanel">
             <h2>edit profile</h2>

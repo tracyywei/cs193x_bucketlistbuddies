@@ -11,7 +11,6 @@
   padding: 1rem;
   background-color: rgba(255,255,255,0.9);
   border-radius: 0.6rem;
-  box-shadow: 1px 1px 1px 1px lightgray;
 }
 
 /***** Header *****/
@@ -25,8 +24,7 @@
 #header {
   display: flex;
   justify-content: center;
-  background-color: rgba(255,255,255,0.8);
-  border-bottom: 1px solid #ccd6dd;
+  background-color: white;
   margin-bottom: 1.5rem;
   padding: 0.5rem 0;
 }
@@ -39,6 +37,7 @@
 
 #header h1 {
   font-weight: 600;
+  font-size: x-large;
 }
 
 #loginForm {
@@ -74,9 +73,9 @@
   display: none;
 }
 
+
 #welcome h1 {
-  font-size: 1.4em;
-  color: black;
+  font-size: xx-large;
 }
 
 #welcome .paper {
@@ -87,11 +86,9 @@
 #welcome .brand {
   color: #003796;
   font-weight: bold;
+  font-size: xx-large;
 }
 
-#welcome h2 {
-  color: black;
-}
 
 /***** Main *****/
 
@@ -153,7 +150,7 @@
 
 #feedLabel h1 {
   font-size: 1.5em;
-  font-weight: bold;
+  font-weight: 600;
   color: #003796;
 }
 
@@ -227,26 +224,14 @@
   margin-bottom: 0.5rem;
 }
 
-.iconHeader .addToList {
+.iconHeader > img {
   width: 2em;
   margin-left: 0.25em;
   margin-right: 0.25rem;
 }
 
-.iconHeader .checkoff {
-  width: 2em;
-  margin-left: 0.25em;
-  margin-right: 0.25rem;
-}
-
-.iconHeader .texting {
-  width: 2em;
-  margin-left: 0.25em;
-  margin-right: 0.25rem;
-}
-
-#buddiesContainer {
-  align-items: left;
+.iconHeader > img:hover {
+  cursor: pointer;
 }
 
 #buddiesContainer .profilepic {
@@ -297,6 +282,7 @@
   font-weight: bold;
   font-size: 1.25rem;
   align-items: center;
+  display: flex;
 }
 
 #idContainer {
@@ -313,7 +299,7 @@
 
 #editPanel h2 {
   font-size: x-large;
-  font-weight: bold;
+  font-weight: 600;
 }
 
 #editPanel {
@@ -324,6 +310,7 @@
   display: flex;
   flex-direction: column;
   margin: 1.25rem 0;
+  align-items: flex-start;
 }
 
 .editItem label {

@@ -1,8 +1,13 @@
 db = connect("cs193xproject_buddies");
 db.dropDatabase();
-db.users.insertOne({ id: "tracywei", name: "Tracy", avatarURL: "images/stanford.png", phone: "000-000-0000", activities: ["Go fountain hopping"] });
-db.users.insertOne({ id: "aang", name: "Aang", avatarURL: "images/stanford.png", phone: "123-000-0000", activities: ["Climb the Memchu roof"] });
-db.users.insertOne({ id: "zuko", name: "Zuko", avatarURL: "images/stanford.png", phone: "000-123-0000", activities: ["Explore the steam tunnels"] });
+db.users.insertOne({ id: "tracywei", name: "Tracy", avatarURL: "images/stanford.png", phone: "000-000-0000", activities: ["Go fountain hopping", "Drive to Half Moon Bay", "Sketch at Cantor", "Explore the steam tunnels"] });
+db.users.insertOne({ id: "reesew", name: "Reese", avatarURL: "https://64.media.tumblr.com/027d403078d4b476f5bc7dde1b02a384/6951868e616edc32-87/s1280x1920/89fb50a8b4014af5ad5db8f3d4ef1e422761f71d.png", phone: "123-000-0000", activities: ["Climb the Memchu roof", "Hike the Dish", "Drive to Half Moon Bay"] });
+db.users.insertOne({ id: "issarae", name: "Issa", avatarURL: "https://s.wsj.net/public/resources/images/BN-PY335_wolfe_FR_20160922145642.jpg", phone: "000-123-0000", activities: ["Explore the steam tunnels", "Go on a Tahoe ski trip"] });
+db.users.insertOne({ id: "datree", name: "THE tree", avatarURL: "https://cdn.vox-cdn.com/thumbor/WhUrwqlWQfdrQxmLZVMIkr8GQmY=/1400x1400/filters:format(jpeg)/cdn.vox-cdn.com/uploads/chorus_asset/file/24105352/151707289.jpg", phone: "123-456-7890", activities: ["Explore the steam tunnels", "Drive to Half Moon Bay"] });
 db.posts.insertOne({ userId: "tracywei", time: new Date(), text: "Go fountain hopping" });
-db.posts.insertOne({ userId: "zuko", time: new Date(), text: "Explore the steam tunnels" });
-db.posts.insertOne({ userId: "aang", time: new Date(), text: "Climb the Memchu roof" });
+db.posts.insertOne({ userId: "issarae", time: new Date(), text: "Explore the steam tunnels" });
+db.posts.insertOne({ userId: "issarae", time: new Date(), text: "Go on a Tahoe ski trip" });
+db.posts.insertOne({ userId: "reesew", time: new Date(), text: "Climb the Memchu roof" });
+db.posts.insertOne({ userId: "reesew", time: new Date(), text: "Hike the Dish" });
+db.posts.insertOne({ userId: "tracywei", time: new Date(), text: "Sketch at Cantor" });
+db.posts.insertOne({ userId: "tracywei", time: new Date(), text: "Drive to Half Moon Bay" });
