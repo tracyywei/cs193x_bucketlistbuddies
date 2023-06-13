@@ -21,7 +21,7 @@ body {
   background: linear-gradient(to right, #bcdcff 0%,#a8ffef 19%,#ceffab 40%,#f4d17f 60%,#ffaef0 83%,#b1d5ff 100%);
   background-size: 200% auto;
   background-color: lightskyblue;
-  /* animation: bg 15s linear infinite ; */
+  animation: bg 15s linear infinite ;
 }
 
 @keyframes bg {
