@@ -7,11 +7,14 @@ let api = express.Router();
 let Users;
 let Posts;
 
+const MONGODB_URL = process.env.MONGODB_URL || "mongodb://127.0.0.1";
+
 const initApi = async (app) => {
   app.set("json spaces", 2);
   app.use("/api", api);
 
-  let conn = await MongoClient.connect("mongodb://127.0.0.1");
+  //let conn = await MongoClient.connect("mongodb://127.0.0.1");
+  let conn = await MongoClient.connect(MONGODB_URL);
   let db = conn.db("cs193xproject_buddies");
   Users = db.collection("users");
   Posts = db.collection("posts");

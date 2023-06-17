@@ -1,5 +1,4 @@
-db = connect("cs193xproject_buddies");
-db.dropDatabase();
+db = db.getSiblingDB("cs193xproject_buddies");
 db.users.insertOne({ id: "tracywei", name: "Tracy", avatarURL: "images/stanford.png", phone: "000-000-0000", activities: ["Go fountain hopping", "Drive to Half Moon Bay", "Sketch at Cantor", "Explore the steam tunnels"] });
 db.users.insertOne({ id: "reesew", name: "Reese", avatarURL: "https://64.media.tumblr.com/027d403078d4b476f5bc7dde1b02a384/6951868e616edc32-87/s1280x1920/89fb50a8b4014af5ad5db8f3d4ef1e422761f71d.png", phone: "123-000-0000", activities: ["Climb the Memchu roof", "Hike the Dish", "Drive to Half Moon Bay"] });
 db.users.insertOne({ id: "issarae", name: "Issa", avatarURL: "https://s.wsj.net/public/resources/images/BN-PY335_wolfe_FR_20160922145642.jpg", phone: "000-123-0000", activities: ["Explore the steam tunnels", "Go on a Tahoe ski trip"] });
