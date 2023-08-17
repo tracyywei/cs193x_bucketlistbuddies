@@ -3,7 +3,6 @@ CS193X Final Project
 
 Project Title: Bucket List Buddies
 Your Name: Tracy Wei
-Your SUNetID: tracywei
 
 Overview
 --------
@@ -23,11 +22,3 @@ Features
 - User Profiles: Users have profiles with an id, phone number, name, and avatar.
 - Login/create accounts: Users can log in with their id and phone number. New users can create accounts by writing in an id and phone number.
 
-Collaboration and libraries
----------------------------
-My project overlaps with Assignment 3.1 and 3.2, which provided the foundation of this social media app. I used the HTML/CSS from the assignments to get started with my project and changed and added more HTML/CSS to better fit what I wanted to do in the project (ie. changing the posts to look like cards on a board instead of a row per post, making a profile section, adding a login and logout form, etc.). As for the JavaScript frontend, I also used the assignments' as a foundation but built and edited on top of it to adjust to the features I added in my project (ie. bucket list vs. other posts sections, the buddies list, adding/checking off items, messaging, etc.). Lastly, since the assignments' backend was similar to what was needed for my project, I used that but added on more routes that were needed for the features unique to my project (ie. getting buddies list, adding/removing items, etc.).
-I did consult external code to create the rainbow animation background in my project. Credits to https://gscode.in/css-animated-backgrounds/ (Animation background #1, Author: Maxim)
-
-Anything else?
--------------
-As a web dev beginner, I learned so much from this class!
